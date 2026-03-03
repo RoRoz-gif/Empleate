@@ -1,0 +1,271 @@
+import {createClient as e} from "https://esm.sh/@supabase/supabase-js@2";
+!function() {
+    const e = document.createElement("link").relList;
+    if (!(e && e.supports && e.supports("modulepreload"))) {
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+            t(e);
+        new MutationObserver(e => {
+            for (const n of e)
+                if ("childList" === n.type)
+                    for (const e of n.addedNodes)
+                        "LINK" === e.tagName && "modulepreload" === e.rel && t(e)
+        }
+        ).observe(document, {
+            childList: !0,
+            subtree: !0
+        })
+    }
+    function t(e) {
+        if (e.ep)
+            return;
+        e.ep = !0;
+        const t = function(e) {
+            const t = {};
+            return e.integrity && (t.integrity = e.integrity),
+            e.referrerPolicy && (t.referrerPolicy = e.referrerPolicy),
+            "use-credentials" === e.crossOrigin ? t.credentials = "include" : "anonymous" === e.crossOrigin ? t.credentials = "omit" : t.credentials = "same-origin",
+            t
+        }(e);
+        fetch(e.href, t)
+    }
+}();
+const t = e("https://igpxwybwujyyvqybkwym.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlncHh3eWJ3dWp5eXZxeWJrd3ltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMyOTM4MjEsImV4cCI6MjA3ODg2OTgyMX0.3PqIzLf8F61O03CcocIRAoV4B0e9DtWW1MBk5SJNesk")
+  , n = {
+    FORM_ENDPOINT: "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec",
+    GOOGLE_ANALYTICS_ID: "G-XXXXXXXXXX",
+    SITE_NAME: "TalentoLocal",
+    WHATSAPP_NUMBER: "18492773472"
+};
+function o(e, t) {
+    e.classList.add("border-red-500");
+    let n = e.parentElement.querySelector(".form-error");
+    n || (n = document.createElement("div"),
+    n.className = "form-error",
+    e.parentElement.appendChild(n)),
+    n.textContent = t
+}
+function r(e) {
+    return "string" != typeof e ? "" : e.replace(/[<>]/g, "").trim()
+}
+function i(e, t={}) {
+    "undefined" != typeof gtag && gtag("event", e, t)
+}
+document.addEventListener("DOMContentLoaded", function() {
+    (function() {
+        const e = document.getElementById("year");
+        e && (e.textContent = (new Date).getFullYear())
+    }
+    )(),
+    function() {
+        const e = document.getElementById("mobileMenuButton")
+          , t = document.getElementById("mobileMenu");
+        e && t && (e.addEventListener("click", function() {
+            e.classList.toggle("active"),
+            t.classList.toggle("active");
+            const n = e.classList.contains("active");
+            e.setAttribute("aria-expanded", n)
+        }),
+        t.querySelectorAll("a").forEach(n => {
+            n.addEventListener("click", function() {
+                e.classList.remove("active"),
+                t.classList.remove("active"),
+                e.setAttribute("aria-expanded", "false")
+            })
+        }
+        ),
+        document.addEventListener("click", function(n) {
+            e.contains(n.target) || t.contains(n.target) || (e.classList.remove("active"),
+            t.classList.remove("active"),
+            e.setAttribute("aria-expanded", "false"))
+        }))
+    }(),
+    document.querySelectorAll('a[href^="#"]').forEach(e => {
+        e.addEventListener("click", function(e) {
+            const t = this.getAttribute("href");
+            if ("#" === t)
+                return;
+            e.preventDefault();
+            const n = document.querySelector(t);
+            if (n) {
+                const e = 80
+                  , t = n.getBoundingClientRect().top + window.pageYOffset - e;
+                window.scrollTo({
+                    top: t,
+                    behavior: "smooth"
+                })
+            }
+        })
+    }
+    ),
+    function() {
+        const e = document.querySelector(".header");
+        e && window.addEventListener("scroll", function() {
+            window.pageYOffset > 50 ? e.classList.add("header-scrolled") : e.classList.remove("header-scrolled")
+        })
+    }(),
+    function() {
+        const e = document.getElementById("leadForm")
+          , n = document.getElementById("submitBtn")
+          , a = document.getElementById("formMsg");
+        e && n && a && e.addEventListener("submit", async function(c) {
+            if (c.preventDefault(),
+            document.querySelectorAll(".form-error").forEach(e => e.remove()),
+            document.querySelectorAll(".border-red-500").forEach(e => {
+                e.classList.remove("border-red-500")
+            }
+            ),
+            !function(e) {
+                let t = !0;
+                const n = e.querySelector('[name="nombre"]');
+                n && n.value.trim().split(" ").length < 2 && (o(n, "Por favor ingresa tu nombre completo"),
+                t = !1);
+                const r = e.querySelector('[name="whatsapp"]');
+                r && (/^(\+?1)?[\s\-]?\(?(809|829|849)\)?[\s\-]?\d{3}[\s\-]?\d{4}$/.test(r.value.replace(/\s/g, "")) || (o(r, "Ingresa un número de WhatsApp válido (809/829/849-XXX-XXXX)"),
+                t = !1));
+                const i = e.querySelector('[name="email"]');
+                i && i.value && (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(i.value) || (o(i, "Ingresa un correo electrónico válido"),
+                t = !1));
+                const a = e.querySelector("#consent");
+                return a && !a.checked && (o(a, "Debes aceptar los términos para continuar"),
+                t = !1),
+                t
+            }(e))
+                return;
+            n.disabled = !0,
+            n.innerHTML = '<span class="spinner"></span> Enviando...',
+            a.classList.remove("hidden"),
+            a.textContent = "Procesando tu aplicación...",
+            a.className = "text-sm text-slate-600";
+            const s = {
+                nombre: r(e.nombre.value),
+                whatsapp: r(e.whatsapp.value),
+                email: r(e.email.value || ""),
+                sector: r(e.sector.value || ""),
+                ingles: r(e.ingles.value),
+                experiencia: r(e.experiencia.value || ""),
+                disponibilidad: r(e.disponibilidad.value || ""),
+                cv: r(e.cv.value || "")
+            };
+            try {
+                const {error: n} = await t.from("leads").insert([s]);
+                if (n)
+                    throw n;
+                !function() {
+                    const e = document.getElementById("formMsg");
+                    e.textContent = "¡Aplicación recibida con éxito! Te contactaremos por WhatsApp en 24-48 horas hábiles.",
+                    e.className = "text-sm text-emerald-700 font-semibold",
+                    e.scrollIntoView({
+                        behavior: "smooth",
+                        block: "nearest"
+                    })
+                }(),
+                function() {
+                    if (window.history.replaceState) {
+                        const e = window.location.origin + window.location.pathname + window.location.hash;
+                        window.history.replaceState(null, document.title, e)
+                    }
+                }(),
+                e.reset(),
+                i("form_submission", {
+                    form_name: "lead_form",
+                    nivel_ingles: s.ingles,
+                    experiencia: s.experiencia
+                })
+            } catch (l) {
+                !function(e) {
+                    const t = document.getElementById("formMsg");
+                    t.textContent = e,
+                    t.className = "text-sm text-red-600 font-semibold"
+                }("Hubo un error al enviar tu aplicación. Por favor intenta de nuevo o contáctanos por WhatsApp.")
+            } finally {
+                n.disabled = !1,
+                n.textContent = "Enviar aplicación"
+            }
+        })
+    }(),
+    function() {
+        const e = document.querySelectorAll(".faq-item");
+        e.forEach(t => {
+            const n = t.querySelector(".faq-question");
+            n && n.addEventListener("click", function() {
+                e.forEach(e => {
+                    e !== t && e.classList.remove("active")
+                }
+                ),
+                t.classList.toggle("active")
+            })
+        }
+        )
+    }(),
+    function() {
+        if (!n.GOOGLE_ANALYTICS_ID || "G-XXXXXXXXXX" === n.GOOGLE_ANALYTICS_ID)
+            return;
+        const e = document.createElement("script");
+        function t() {
+            dataLayer.push(arguments)
+        }
+        e.async = !0,
+        e.src = `https://www.googletagmanager.com/gtag/js?id=${n.GOOGLE_ANALYTICS_ID}`,
+        document.head.appendChild(e),
+        window.dataLayer = window.dataLayer || [],
+        t("js", new Date),
+        t("config", n.GOOGLE_ANALYTICS_ID),
+        document.querySelectorAll('a[href="#formulario"]').forEach(e => {
+            e.addEventListener("click", function() {
+                var e;
+                i("cta_click", {
+                    cta_location: (null == (e = this.closest("section")) ? void 0 : e.id) || "unknown",
+                    cta_text: this.textContent.trim()
+                })
+            })
+        }
+        )
+    }(),
+    function() {
+        const e = document.querySelectorAll("img[data-src]");
+        if ("IntersectionObserver"in window) {
+            const t = new IntersectionObserver( (e, n) => {
+                e.forEach(e => {
+                    if (e.isIntersecting) {
+                        const n = e.target;
+                        n.src = n.dataset.src,
+                        n.removeAttribute("data-src"),
+                        t.unobserve(n)
+                    }
+                }
+                )
+            }
+            );
+            e.forEach(e => t.observe(e))
+        } else
+            e.forEach(e => {
+                e.src = e.dataset.src,
+                e.removeAttribute("data-src")
+            }
+            )
+    }(),
+    "serviceWorker"in navigator && "https:" === window.location.protocol && window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/service-worker.js").then(e => {
+            e.addEventListener("updatefound", () => {
+                const t = e.installing;
+                t.addEventListener("statechange", () => {
+                    "installed" === t.state && navigator.serviceWorker.controller && function() {
+                        const e = document.createElement("div");
+                        e.style.cssText = "\n    position: fixed;\n    bottom: 20px;\n    left: 50%;\n    transform: translateX(-50%);\n    background: #0f172a;\n    color: white;\n    padding: 16px 24px;\n    border-radius: 12px;\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);\n    z-index: 10000;\n    display: flex;\n    gap: 16px;\n    align-items: center;\n    max-width: 90%;\n  ",
+                        e.innerHTML = '\n    <span>Nueva versión disponible</span>\n    <button onclick="location.reload()" style="\n      background: white;\n      color: #0f172a;\n      border: none;\n      padding: 8px 16px;\n      border-radius: 6px;\n      font-weight: 600;\n      cursor: pointer;\n    ">Actualizar</button>\n  ',
+                        document.body.appendChild(e)
+                    }()
+                }
+                )
+            }
+            )
+        }
+        ).catch(e => {}
+        )
+    }
+    )
+}),
+window.TalentoLocal = {
+    trackEvent: i,
+    CONFIG: n
+};
