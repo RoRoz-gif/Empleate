@@ -104,6 +104,15 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     }(),
     function() {
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+    }(),
+    function() {
         const e = document.getElementById("leadForm")
           , n = document.getElementById("submitBtn")
           , a = document.getElementById("formMsg");
@@ -183,20 +192,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
     }(),
-    function() {
-        const e = document.querySelectorAll(".faq-item");
-        e.forEach(t => {
-            const n = t.querySelector(".faq-question");
-            n && n.addEventListener("click", function() {
-                e.forEach(e => {
-                    e !== t && e.classList.remove("active")
-                }
-                ),
-                t.classList.toggle("active")
-            })
-        }
-        )
-    }(),
+    
     function() {
         if (!n.GOOGLE_ANALYTICS_ID || "G-XXXXXXXXXX" === n.GOOGLE_ANALYTICS_ID)
             return;
